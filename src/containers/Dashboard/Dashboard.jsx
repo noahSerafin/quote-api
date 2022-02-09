@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import "./Dashboard.scss";
 import QuoteList from "../../components/QuoteList/QuoteList";
-import Form from "../../components/Form/Form";
 import Home from "../../components/Home/Home";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
+import { getSelectionRange } from "@testing-library/user-event/dist/utils";
 
 const Dashboard = () => {
   const [quotes, setquotes] = useState([]);
-  //const [quote, setquote] = useState([]);
+  const [quote, setquote] = useState([]);//  c
 
   const getquotes = () => {
     fetch("http://localhost:8080/quotes")
@@ -18,27 +17,32 @@ const Dashboard = () => {
       .catch(err => console.log(err))
   }
 
-  /*const getquote = () => {
-    fetch("http://localhost:8080/quote")
+  const getquote = () => { //
+    fetch("http://localhost:8080/random")
       .then(res => res.json())
       .then(json => setquote(json))
       .catch(err => console.log(err))
-  }*/
+  }
 
   useEffect(() => {
     getquotes();
   }, [quotes]);
 
+  useState(() => { //
+    getquote();
+  }, [quote]);  
+
   return (
     <Router>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/quotes" element={<QuoteList quotes={quotes} />} />
-        <Route path="/new-quote" element={<Form />} />
+        <Route path="/random" element={<Home quote={quote}/>} />
+        <Route path="/quotes" element={<QuoteList quotes={quotes} />} />        
       </Routes>
     </Router>
   )
 }
 
 export default Dashboard
+
+/*<Route path="/new-quote" element={<Form />} />*/

@@ -5,14 +5,14 @@ const Quote = (props) => {
     president,
     quote,
     date
-  } = props.greeting;
+  } = props.quote;
 
   const {isHidden} = props;
 
   return (
     <div className="quote">
       <h3>{quote}</h3>
-      <div className={isHidden}>
+      <div className= {`visible ${isHidden ? "hidden" : ""}`}>
         <p>Said by: {president}</p>
         <p>Said on: {date}</p>
       </div>      
@@ -21,3 +21,5 @@ const Quote = (props) => {
 }
 
 export default Quote
+
+//<div className= `{isHidden} ? "quote":"quote-guess"`>

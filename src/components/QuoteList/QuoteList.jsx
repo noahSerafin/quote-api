@@ -1,10 +1,12 @@
 import "./QuoteList.scss";
-import Quote from "../quote/quote";
+import Quote from "../Quote/Quote";
 
-const QuoteList = (props) => {
+const QuoteList = (props) => { 
+
+
   return (
     <>
-      <h2 className="heading">The full list of quotes</h2>
+      <h2 className="heading">The Full List of Quotes</h2>
       <div className="container">
         {props.quotes && props.quotes.map(quote => <Quote key={quote.id} quote={quote} isHidden={false}/>)}
       </div>
